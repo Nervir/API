@@ -23,10 +23,8 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 
-
 @app.route("/", methods = ['GET'])
 def test():
-    print(data[0]['rates'])
     if request.method == 'GET':
         return render_template("test.html", data=data)
 
@@ -34,8 +32,21 @@ def test():
 @app.route("/home", methods = ['POST'])
 def home():
     if request.method == 'POST':
-        cost = data[0]['rates'][request.form[i]]['bid'] #* request.form['amount']
+        amount = int(request.form['amount'])
+        code = request.form['code']
+        rates = data[0]['rates']
+        for rate in rates:
+            if rate['code'].lower() == code.lower():
+                bid = rate['bid']
+                break
+        try:
+            if not bid:
+                pass
+        except UnboundLocalError:
+            return "<div> This currency doesn't exist </div>"
+        cost = amount * bid
         return render_template("test.html", data=data, cost=cost)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

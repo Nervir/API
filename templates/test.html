@@ -10,8 +10,8 @@
 
             <label for="currency">Wybierz walute:</label>
             <select name="currency" id="currency">
-            {% for i in range(data[0]['rates']| length) %}
-                <option value={{i}}>{{data[0]['rates'][i]['currency']}}</option>
+            {% for i in range(data[0]['rates'] | length) %}
+                <option value={{i}}>{{data[0]['rates'][i]['code']}}</option>
             {% endfor %}
             <input type='submit' value='submit'/>
             <p>{{cost}}</p>
