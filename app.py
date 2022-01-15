@@ -19,9 +19,7 @@ with open('rates.csv', 'w', newline='', encoding='utf-8') as csvfile:
     for i in data[0]['rates']:
         spamwriter.writerow(i.values())
 
-from flask import Flask, render_template, request
 app = Flask(__name__)
-
 
 @app.route("/", methods = ['GET'])
 def test():
