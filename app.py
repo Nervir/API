@@ -3,14 +3,6 @@ import csv
 from flask import Flask, render_template, request
 app = Flask(__name__)
 
-data = {"data": {
-  "id": 1,
-  "name": "Something",
-  "colors": ["red", "blue"]
-  }
-}
-
-
 response = requests.get("http://api.nbp.pl/api/exchangerates/tables/C?format=json")
 data = response.json()
 
